@@ -1,0 +1,52 @@
+ <template>
+     <div class="app-main-layout">
+
+         <NavBar
+            @toggleSideBar="SideBarOpen = !SideBarOpen"
+         />
+
+         <SideBar
+            v-model="SideBarOpen"
+         />
+
+         <main class="app-content"
+            :class="{full: !SideBarOpen}"
+         >
+             <div class="app-page">
+                 <router-view/>
+             </div>
+         </main>
+
+         <div class="fixed-action-btn">
+             <router-link class="btn-floating btn-large blue" to="/record">
+                 <i class="large material-icons">add</i>
+             </router-link>
+         </div>
+     </div>
+</template>
+
+<script>
+
+import SideBar from '../components/App/SideBar'
+import NavBar from '../components/App/NavBar'
+
+export default {
+  name: 'App',
+  components: {
+    SideBar,
+    NavBar
+  },
+  data () {
+    return {
+      SideBarOpen: true
+    }
+  },
+  computed: {
+  },
+  async mounted () {
+    if (!Object.keys(this.$store.getters.getInfo).length) {
+      await this.$store.dispatch('fetchInfo')
+    }
+  }
+}
+</script>
