@@ -29,6 +29,7 @@
 
 import SideBar from '../components/App/SideBar'
 import NavBar from '../components/App/NavBar'
+import messages from '../utils/messages'
 
 export default {
   name: 'App',
@@ -42,6 +43,15 @@ export default {
     }
   },
   computed: {
+    error () {
+      return this.$store.getters.getError
+    }
+  },
+  watch: {
+    error (fbError) {
+      console.log('fbError', fbError)
+      this.$error(messages[fbError.code] || 'Что-то пошло не так')
+    }
   },
   async mounted () {
     if (!Object.keys(this.$store.getters.getInfo).length) {
