@@ -11,6 +11,7 @@ import store from './store'
 import dateFilter from './filters/data.filters'
 import currencyFilter from './filters/currency.filter'
 import TheLoader from './components/App/TheLoader'
+import tooltipDirective from './directives/tooltip.directive'
 
 import 'materialize-css/dist/js/materialize.min'
 
@@ -20,6 +21,7 @@ import 'firebase/database'
 
 Vue.filter('date', dateFilter)
 Vue.filter('currencyFilter', currencyFilter)
+Vue.directive('tooltip', tooltipDirective)
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCeAG7okQaMevcSEHHofV9K7xZMPuXzBCU',
